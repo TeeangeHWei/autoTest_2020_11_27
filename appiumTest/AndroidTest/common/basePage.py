@@ -21,6 +21,14 @@ class basePage(object):
         except Exception as e:
             print('未找到元素{0}'.format(e))
 
+    #accessibilityId
+    def byAccessId(self,loca):
+        try:
+            return self.driver.find_elements_by_accessibility_id(loca)
+        except Exception as e:
+            print('未找到元素{0}'.format(e))
+
+
 
 
 

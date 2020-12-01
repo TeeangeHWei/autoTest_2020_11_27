@@ -4,7 +4,7 @@ from appiumTest.AndroidTest.common import basePage
 
 class pageElements(basePage.basePage):
     #微信登录按钮
-    wechat_btn_element = '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[3]/android.widget.FrameLayout/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.ImageView'
+    wechat_btn_element = '/var/mobile/Containers/Data/Application/CC010926-CB01-42A2-A5E1-C834501BCFA3/Library/Bundlejs/bundle/assets/wechat.png'
     # google登录按钮
     google_btn_element = '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[3]/android.widget.FrameLayout/android.widget.FrameLayout[1]/android.widget.FrameLayout[3]/android.widget.ImageView'
     # 微信登录按钮

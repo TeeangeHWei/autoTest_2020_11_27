@@ -14,7 +14,8 @@ class loginPage(basePage.basePage):
     login_result_text = pageElements.login_result_element
     policy_btn = pageElements.policy_element
     permisson_sys_btn = pageElements.permission_element
-    #截图
+
+    #图片list
     imgs = []
     def clickPolicy(self):
 
@@ -43,27 +44,26 @@ class loginPage(basePage.basePage):
         """跳过"""
         self.by_id(self.skip_btn).click()
 
-    def login_succes_status(self):
-        self.by_name(self.login_result_text).text
+
 
     def get_screenShot(self):
         self.imgs.append(self.driver.get_screenshot_as_base64())
         return True
 
     def login_approbject(self, tag):
-
         """
-        :param tag: 传入需要哪个按钮的tag 0：wechat 1：fb 2：google 3：apple 4：skip
+        :param tag: 传入需要的登录按钮的tag 0：wechat 1：fb 2：google 3：apple 4：skip
         :return:
         """
         if tag == 0:
-
             sleep(2)
+            #点击协议
             self.clickPolicy()
             sleep(2)
+            #截图
             self.get_screenShot()
+            #点击权限
             self.clickSysPermisson()
-            # self.click_wx_LoginBtn()
         if tag == 1:
             self.click_fb_loginBtn()
         if tag == 2:
