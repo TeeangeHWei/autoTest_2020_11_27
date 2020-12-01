@@ -654,8 +654,7 @@ a.popup_link:hover {
     ENDING_TMPL = r"""
 <div id='ending'>
     <p align="center">
-    Copyright &copy 2016
-    <a href="http://blog.csdn.net/z_johnny" target="_blank"> HONGWEI </a>
+    
     Inc. All rights reserved.
     </p>
 </div>

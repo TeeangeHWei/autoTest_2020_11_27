@@ -34,6 +34,7 @@ class testYamimealLogin(unittest.TestCase):
 
     #执行测试用例
     def test_Yamimeal_login(self):
+        '''用例测试，带截图'''
         yamimealLoginPage = loginPage(self.driver)
         yamimealLoginPage.login_approbject(0)
 

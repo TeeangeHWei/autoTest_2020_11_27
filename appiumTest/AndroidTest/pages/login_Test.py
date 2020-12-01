@@ -51,13 +51,13 @@ class loginPage(basePage.basePage):
         return True
 
     def login_approbject(self, tag):
+
         """
         :param tag: 传入需要哪个按钮的tag 0：wechat 1：fb 2：google 3：apple 4：skip
         :return:
         """
-
-
         if tag == 0:
+
             sleep(2)
             self.clickPolicy()
             sleep(2)
