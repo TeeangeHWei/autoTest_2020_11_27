@@ -22,6 +22,7 @@ class testYamimealLogin(unittest.TestCase):
         self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
         self.verificationError = u''
 
+
     # 截图
     def get_screenShot(self):
         self.imgs.append(self.driver.get_screenshot_as_base64())

@@ -6,6 +6,8 @@ import time
 from appium import webdriver
 
 
+
+
 class testYamimealLogin(unittest.TestCase):
     def setUp(self) -> None:
         desired_caps = {
@@ -17,7 +19,7 @@ class testYamimealLogin(unittest.TestCase):
                           "platformVersion": "14.1",
                         }
         self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
-
+        self.case = self
     def tearDown(self) -> None:
         time.sleep(2)
         self.driver.close_app()
@@ -25,13 +27,21 @@ class testYamimealLogin(unittest.TestCase):
     # def wx_Yamimeal_login(self):
     #     yamimealLoginPage = loginPage(self.driver)
     #     yamimealLoginPage.login_approbject(0)
+
     def test_fb_Yamimeal_login(self):
-        fbLoginPage = loginPage(self.driver)
+        '''脸书登录'''
+        fbLoginPage = loginPage(self.driver,self.case)
         fbLoginPage.login_approbject(1)
 
-    # def google_yamimeal_login(self):
-    #     ggLoginPage = loginPage(self.driver)
-    #     ggLoginPage.login_approbject(2)
+    def test_google_yamimeal_login(self):
+        '''谷歌第三方登录'''
+        ggLoginPage = loginPage(self.driver,self.case)
+        ggLoginPage.login_approbject(2)
+
+
+    # def test_apple_yamimeal_login(self):
+    #     '''苹果第三方登录'''
+
 
     # def skip_yamimel_login(self):
     #     skipLoginPage = loginPage(self.driver)

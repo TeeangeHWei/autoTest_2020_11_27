@@ -20,6 +20,7 @@ class pageElements(basePage.basePage):
     gg_Account_element = '电子邮件地址或电话号码'
     gg_next_element = '下一步'
     gg_Password_element = '输入您的密码'
+    gg_thrid_login_element = '//XCUIElementTypeOther[@name=\"登录 - Google 帐号\"]/XCUIElementTypeOther[3]/XCUIElementTypeOther[1]'
 
     #确认地址
     yes_location_element = '**/XCUIElementTypeStaticText[`value == "是的，這是我的地址"`]'
@@ -28,24 +29,27 @@ class pageElements(basePage.basePage):
     #登入进去的第一个弹框:没有附近的上家
     goTry_element = '馬上試試'
     no_Try_element = '不了'
+    off_update_account = '//XCUIElementTypeApplication[@name="Yamimeal"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeStaticText'
 
     #账户需要更新时弹框
     cancel_update_element = '//*[@id="screenshotContainer"]/div/div/div/div/div/div[14]'
     bindPhone = '**/XCUIElementTypeStaticText[`value == "綁定電話"`]'
-
+    #点击账户
+    account_click = '帳戶'
     #点击用户信息
-    user_click = '**/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther[5]/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[1]'
+    user_click = '**/XCUIElementTypeStaticText[`value == "用戶信息"`]'
     #退出登录
     logout_element = '**/XCUIElementTypeStaticText[`value == "退出登錄"`]'
     #微信登录按钮
     '''使用accessiD'''
     wechat_btn_element = '/var/mobile/Containers/Data/Application/CC010926-CB01-42A2-A5E1-C834501BCFA3/Library/Bundlejs/bundle/assets/wechat.png'
     # google登录按钮
-    google_btn_element = '/var/mobile/Containers/Data/Application/CC010926-CB01-42A2-A5E1-C834501BCFA3/Library/Bundlejs/bundle/assets/google.png '
+    google_btn_element = '/var/mobile/Containers/Data/Application/CC010926-CB01-42A2-A5E1-C834501BCFA3/Library/Bundlejs/bundle/assets/google.png'
     # fb登录按钮
     fb_btn_element = '/var/mobile/Containers/Data/Application/CC010926-CB01-42A2-A5E1-C834501BCFA3/Library/Bundlejs/bundle/assets/facebook.png'
     #苹果登录
     apple_btn_element = '/var/mobile/Containers/Data/Application/CC010926-CB01-42A2-A5E1-C834501BCFA3/Library/Bundlejs/bundle/assets/apple.png'
+
     #跳过按钮
     skip_btn_element = ''
     #确认按钮

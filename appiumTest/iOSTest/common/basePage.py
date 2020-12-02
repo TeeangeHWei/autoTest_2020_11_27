@@ -1,6 +1,7 @@
 # coding=utf-8
 class basePage(object):
-    def __init__(self,driver):
+    def __init__(self,driver,unitest):
+        self.caseAssert = unitest
         self.driver = driver
     # 元素id
     def by_id(self,loca):
@@ -33,6 +34,35 @@ class basePage(object):
             return self.driver.find_element_by_ios_class_chain(loca)
         except Exception as e:
             print('未找到元素{0}'.format(e))
+
+    def by_seletor(self,loca):
+        try:
+            return self.driver.find_element_by_css_selector(loca)
+        except Exception as e:
+            print('未找到元素{0}'.format(e))
+
+
+    def assert_Equal(self,a,b):
+        '''断言equal判断相等'''
+        try:
+            return self.caseAssert.assertEqual(a,b)
+        except Exception as e:
+            print('未找到断言内容{0}'.format(e))
+
+    def assert_Not_Equal(self,a,b):
+        '''断言equal判断相等'''
+        try:
+            return self.caseAssert.assertNotEqual(a,b)
+        except Exception as e:
+            print('未找到断言内容{0}'.format(e))
+
+    def alert_accept(self):
+        '''允许所有弹窗'''
+        try:
+            return self.driver.switch_to.alert.accept()
+        except Exception as e:
+            print('未找到断言内容{0}'.format(e))
+
 
 
 
