@@ -3,6 +3,20 @@ from appiumTest.AndroidTest.common import basePage
 
 
 class pageElements(basePage.basePage):
+    #新安装app
+    frist_page_one = '**/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]'
+    english = '**/XCUIElementTypeStaticText[`value == "English"`]'
+    traditional = '**/XCUIElementTypeStaticText[`value == "繁體中文"`]'
+    espain = '**/XCUIElementTypeStaticText[`value == "Español"`]'
+    languageList = [english,traditional,espain]
+    first_wx_btn = '/var/mobile/Containers/Data/Application/BD7F6F1B-8CE7-4F24-B497-D50A3DC78B75/Library/Bundlejs/bundle/assets/wechat.png'
+
+    first_fb_btn = '/var/mobile/Containers/Data/Application/BD7F6F1B-8CE7-4F24-B497-D50A3DC78B75/Library/Bundlejs/bundle/assets/facebook.png'
+    first_gg_btn = '/var/mobile/Containers/Data/Application/BD7F6F1B-8CE7-4F24-B497-D50A3DC78B75/Library/Bundlejs/bundle/assets/google.png'
+    first_appleid_btn = '/var/mobile/Containers/Data/Application/BD7F6F1B-8CE7-4F24-B497-D50A3DC78B75/Library/Bundlejs/bundle/assets/apple.png'
+
+
+
     #弹框按钮元素
     alert_Countinue_element = '继续'
     alert_Cancel_element = '取消'
@@ -45,6 +59,7 @@ class pageElements(basePage.basePage):
     wechat_btn_element = '/var/mobile/Containers/Data/Application/CC010926-CB01-42A2-A5E1-C834501BCFA3/Library/Bundlejs/bundle/assets/wechat.png'
     # google登录按钮
     google_btn_element = '/var/mobile/Containers/Data/Application/CC010926-CB01-42A2-A5E1-C834501BCFA3/Library/Bundlejs/bundle/assets/google.png'
+
     # fb登录按钮
     fb_btn_element = '/var/mobile/Containers/Data/Application/CC010926-CB01-42A2-A5E1-C834501BCFA3/Library/Bundlejs/bundle/assets/facebook.png'
     #苹果登录
@@ -61,3 +76,5 @@ class pageElements(basePage.basePage):
     policy_element = ("com.proton.YamiMeal:id/btn_pos")
     #权限设定
     permission_element = ("com.proton.YamiMeal:id/dialog_confirm_btn")
+    #系统定位弹窗
+    sys_location_alert = '使用App时允许'

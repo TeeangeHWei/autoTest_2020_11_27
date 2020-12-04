@@ -24,11 +24,26 @@ class loginPage(basePage.basePage):
     no_try_alert = pageElements.no_Try_element
     off_alert_account_update = pageElements.off_update_account
     gg_third_login = pageElements.gg_thrid_login_element
+    install_page_one = pageElements.frist_page_one
+    sys_alert_location = pageElements.sys_location_alert
+    langage_list = pageElements.languageList
+    first_wx_btn = pageElements.first_wx_btn
+    first_gg_btn = pageElements.first_gg_btn
+    first_appleid_btn = pageElements.first_appleid_btn
+    first_fb_btn = pageElements.first_fb_btn
 
 
     #截图
     imgs = []
-
+    def first_wx_loginbtn(self):
+        '''第一次安装时按钮元素'''
+        self.by_AccessId(self.first_wx_btn).click()
+    def first_fb_loginbtn(self):
+        self.by_AccessId(self.first_fb_btn).click()
+    def first_gg_loginbtn(self):
+        self.by_AccessId(self.first_gg_btn).click()
+    def first_appleid_loginbtn(self):
+        self.by_AccessId(self.first_appleid_btn).click()
     def clickPolicy(self):
         '''点击协议'''
         self.by_id(self.policy_btn).click()
@@ -58,12 +73,21 @@ class loginPage(basePage.basePage):
         """跳过"""
         self.by_id(self.skip_btn).click()
 
+    def frist_Install_app(self):
+        try:
 
-    def get_screenShot(self):
-        '''截屏方法'''
-        print('执行了截屏')
-        self.imgs.append(self.driver.get_screenshot_as_base64())
-        return True
+            '''第一次安装'''
+            sleep(5)
+            self.by_AccessId(self.sys_alert_location).click()
+            sleep(3)
+            self.alert_accept()
+            sleep(3)
+            self.iOS_By_ClassChain(self.install_page_one).click()
+            sleep(3)
+            self.iOS_By_ClassChain(self.langage_list[1]).click()
+        except Exception as e:
+            print('找不到元素已跳过{0}'.format(e))
+
 
     def thrid_fb_login(self,status):
 
@@ -72,10 +96,29 @@ class loginPage(basePage.basePage):
         status:0 从未登录过 1 已登录过
         '''
         if status == 0:
-            self.by_id('').sendKey('')
-            self.by_id('').sendKey('')
-            self.by_id('').click()
+            self.frist_Install_app()
+            # self.by_id('').sendKey('')
+            # self.by_id('').sendKey('')
+            # self.by_id('').click()
+            sleep(10)
+            # self.first_fb_loginbtn()
+            TouchAction(self.driver).tap(x=162,y=464).perform().release()
+            sleep(10)
+            self.by_AccessId(self.fb_aler_continue).click()
+            sleep(10)
+            self.by_AccessId(self.fb_aler_continue).click()
+            sleep(12)
+            self.iOS_By_ClassChain(self.yes_loca_element).click()
+            sleep(5)
+            self.alert()
+            sleep(5)
+            homeText = self.by_AccessId('首頁').text
+            print(homeText)
+            self.assert_Equal(homeText, u'首頁')
+            sleep(4)
+            self.logout()
         else:
+            self.click_fb_loginBtn()
             sleep(10)
             self.by_AccessId(self.fb_aler_continue).click()
             sleep(10)
@@ -94,10 +137,29 @@ class loginPage(basePage.basePage):
     def thrid_gg_login(self,status):
         if status == 0:
             '''google登录'''
-            self.by_id('').sendKey('')
-            self.by_id('').sendKey('')
-            self.by_id('').click()
+            self.frist_Install_app()
+            # self.by_id('').sendKey('')
+            # self.by_id('').sendKey('')
+            # self.by_id('').click()
+            sleep(10)
+            # self.first_fb_loginbtn()
+            TouchAction(self.driver).tap(x=252, y=464).perform().release()
+            sleep(10)
+            self.by_AccessId(self.fb_aler_continue).click()
+            sleep(10)
+            self.by_xpath(self.gg_third_login).click()
+            sleep(12)
+            self.iOS_By_ClassChain(self.yes_loca_element).click()
+            sleep(5)
+            self.alert()
+            sleep(5)
+            homeText = self.by_AccessId('首頁').text
+            print(homeText)
+            self.assert_Equal(homeText, u'首頁')
+            sleep(4)
+            self.logout()
         else:
+            self.click_google_login_btn()
             sleep(3)
             self.alert_accept()
             sleep(5)
@@ -112,6 +174,7 @@ class loginPage(basePage.basePage):
             self.assert_Equal(homeText, u'首頁')
             sleep(4)
             self.logout()
+
 
 
 
@@ -139,9 +202,14 @@ class loginPage(basePage.basePage):
     def alert(self):
         '''处理登录之后有需要更新的alert'''
         sleep(10)
-        self.by_AccessId(self.no_try_alert).click()
-        sleep(10)
-        TouchAction(self.driver).press(x=247,y=225).perform().release()
+        try:
+            self.by_AccessId(self.no_try_alert).click()
+            sleep(10)
+            TouchAction(self.driver).press(x=247, y=225).perform().release()
+        except Exception as e:
+            print('定位不到元素即将跳过{0}'.format(e))
+            pass
+
 
 
 
@@ -155,23 +223,24 @@ class loginPage(basePage.basePage):
             #点击协议
             self.clickPolicy()
             sleep(2)
-            #截屏
-            self.get_screenShot()
             #点击权限
             self.clickSysPermisson()
             #点击wx按钮
             self.click_wx_LoginBtn()
 
         if tag == 1:
-            '''脸书第三方登录'''
-            self.click_fb_loginBtn()
-            self.thrid_fb_login(1)
-
+            '''脸书第三方登录，并退出登录'''
+            self.thrid_fb_login(0)
         if tag == 2:
-            '''谷歌第三方登录'''
-            self.click_google_login_btn()
-            self.thrid_gg_login(1)
+            '''谷歌第三方登录，并退出登录'''
+            self.thrid_gg_login(0)
         if tag == 3:
             self.click_appele_login_btn()
+
         if tag == 4:
+            '''跳过按钮'''
             self.click_skip_btn()
+            sleep(2)
+            self.iOS_By_ClassChain(self.yes_loca_element).click()
+            sleep(3)
+            self.by_AccessId(self.no_try_alert).click()

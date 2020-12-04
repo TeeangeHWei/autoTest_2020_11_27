@@ -4,12 +4,16 @@ from appiumTest.iOSTest.pages.login_Test import loginPage
 import unittest
 import time
 from appium import webdriver
+import os
+
+
 
 
 
 
 class testYamimealLogin(unittest.TestCase):
     def setUp(self) -> None:
+        app = os.path.abspath('/Users/cyrus.h/Desktop/AutoTest/autoTest_2020_11_27/appiumTest/iOSTest/config/Yamimeal_2.7.0.ipa')
         desired_caps = {
                           "platformName": "iOS",
                           "deviceName": "甜在心馒头",
@@ -17,6 +21,7 @@ class testYamimealLogin(unittest.TestCase):
                           "AutomationName":"XCUITest",
                           "udid":"00008020-000E2D540209002E",
                           "platformVersion": "14.1",
+                          "app":app
                         }
         self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
         self.case = self
@@ -43,9 +48,9 @@ class testYamimealLogin(unittest.TestCase):
     #     '''苹果第三方登录'''
 
 
-    # def skip_yamimel_login(self):
-    #     skipLoginPage = loginPage(self.driver)
-    #     skipLoginPage.login_approbject(3)
+    def skip_yamimel_login(self):
+        skipLoginPage = loginPage(self.driver)
+        skipLoginPage.login_approbject(3)
 
 
 if __name__ == '__main__':
