@@ -31,6 +31,7 @@ class loginPage(basePage.basePage):
     first_gg_btn = pageElements.first_gg_btn
     first_appleid_btn = pageElements.first_appleid_btn
     first_fb_btn = pageElements.first_fb_btn
+    not_login_mypage = pageElements.not_login_my
 
 
     #截图
@@ -70,23 +71,59 @@ class loginPage(basePage.basePage):
         self.by_id(self.appleID_login_btn).click()
 
     def click_skip_btn(self):
-        """跳过"""
-        self.by_id(self.skip_btn).click()
-
-    def frist_Install_app(self):
         try:
+            """跳过"""
+            self.iOS_By_ClassChain(self.skip_btn).click()
+        except Exception as e:
+            print('未找到元素{0}'.format(e))
 
-            '''第一次安装'''
+
+
+    def frist_Install_app(self,item):
+        '''
+        第一次安装app
+        :param item: 选择语言
+        :return:
+        '''
+
+        try:
             sleep(5)
             self.by_AccessId(self.sys_alert_location).click()
+            print('点击系统定位弹窗')
             sleep(3)
             self.alert_accept()
+            print('点击系统级弹窗通过')
             sleep(3)
             self.iOS_By_ClassChain(self.install_page_one).click()
+
             sleep(3)
-            self.iOS_By_ClassChain(self.langage_list[1]).click()
+            self.iOS_By_ClassChain(self.langage_list[item]).click()
+            print('点击选择语言item')
         except Exception as e:
             print('找不到元素已跳过{0}'.format(e))
+
+
+    def thrid_wx_login(self,status):
+        '''
+        wx 第三方登录
+        :param status: 从未登录过 1 已登录过
+        :return:
+        '''
+        if status == 0:
+            self.frist_Install_app(1)
+            # 点击wx按钮
+            self.click_wx_LoginBtn()
+        else:
+            sleep(2)
+            # 点击协议
+            self.clickPolicy()
+            sleep(2)
+            # 点击权限
+            self.clickSysPermisson()
+            # 点击wx按钮
+            self.click_wx_LoginBtn()
+
+
 
 
     def thrid_fb_login(self,status):
@@ -96,12 +133,13 @@ class loginPage(basePage.basePage):
         status:0 从未登录过 1 已登录过
         '''
         if status == 0:
-            self.frist_Install_app()
+            self.frist_Install_app(1)
             # self.by_id('').sendKey('')
             # self.by_id('').sendKey('')
             # self.by_id('').click()
             sleep(10)
             # self.first_fb_loginbtn()
+
             TouchAction(self.driver).tap(x=162,y=464).perform().release()
             sleep(10)
             self.by_AccessId(self.fb_aler_continue).click()
@@ -109,6 +147,7 @@ class loginPage(basePage.basePage):
             self.by_AccessId(self.fb_aler_continue).click()
             sleep(12)
             self.iOS_By_ClassChain(self.yes_loca_element).click()
+
             sleep(5)
             self.alert()
             sleep(5)
@@ -137,7 +176,7 @@ class loginPage(basePage.basePage):
     def thrid_gg_login(self,status):
         if status == 0:
             '''google登录'''
-            self.frist_Install_app()
+            self.frist_Install_app(1)
             # self.by_id('').sendKey('')
             # self.by_id('').sendKey('')
             # self.by_id('').click()
@@ -156,6 +195,7 @@ class loginPage(basePage.basePage):
             homeText = self.by_AccessId('首頁').text
             print(homeText)
             self.assert_Equal(homeText, u'首頁')
+            print('谷歌登录用例通过(未登录过的状态)')
             sleep(4)
             self.logout()
         else:
@@ -175,11 +215,6 @@ class loginPage(basePage.basePage):
             sleep(4)
             self.logout()
 
-
-
-
-
-
     def thrid_apple_login(self):
         '''苹果登录'''
         self.by_id('').sendKey('')
@@ -198,6 +233,15 @@ class loginPage(basePage.basePage):
         self.alert_accept()
         # logoutext = self.iOS_By_ClassChain('**/XCUIElementTypeStaticText[`value == "歡迎 ,"`]').text
         # self.assertEqual(logoutext,u'歡迎')
+
+    def user_page_login(self):
+        '''跳過後到用戶頁面點擊登錄'''
+        self.by_AccessId(self.logout_account).click()
+        sleep(1)
+        self.iOS_By_ClassChain(self.not_login_mypage).click()
+        sleep(2)
+        self.thrid_gg_login(1)
+
 
     def alert(self):
         '''处理登录之后有需要更新的alert'''
@@ -219,15 +263,7 @@ class loginPage(basePage.basePage):
         :return:
         """
         if tag == 0:
-            sleep(2)
-            #点击协议
-            self.clickPolicy()
-            sleep(2)
-            #点击权限
-            self.clickSysPermisson()
-            #点击wx按钮
-            self.click_wx_LoginBtn()
-
+            self.thrid_wx_login(0)
         if tag == 1:
             '''脸书第三方登录，并退出登录'''
             self.thrid_fb_login(0)
@@ -238,9 +274,31 @@ class loginPage(basePage.basePage):
             self.click_appele_login_btn()
 
         if tag == 4:
-            '''跳过按钮'''
+            self.frist_Install_app(1)
+            '''跳过按钮，回到首页'''
             self.click_skip_btn()
+            print('点击跳过按钮')
             sleep(2)
             self.iOS_By_ClassChain(self.yes_loca_element).click()
+            print('点击确认送货地址')
+            sleep(5)
+            try:
+                self.alert()
+                print('点击"没有找到你附近的商家"按钮')
+
+            except Exception as e:
+                pass
             sleep(3)
-            self.by_AccessId(self.no_try_alert).click()
+
+    def login_approbject_EN(self,tag):
+        if tag == 0:
+            self.thrid_wx_login(0)
+        if tag == 1:
+            self.thrid_fb_login(0)
+
+
+
+
+
+
+

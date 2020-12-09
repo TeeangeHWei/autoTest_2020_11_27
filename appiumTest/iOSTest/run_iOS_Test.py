@@ -14,7 +14,9 @@ if __name__ == '__main__':
                         filename='yamimeal.html',
                         title='登录测试报告',
                         tester='CYRUS',
-                        desc='yamimealTestReport')
+                        desc='yamimealTestReport',
+                        templates=2)
     # runner.run()
+    '''当元素找不到执行此方法 重新运行所有用例'''
     runner.rerun_run(count=3,interval=2)
 

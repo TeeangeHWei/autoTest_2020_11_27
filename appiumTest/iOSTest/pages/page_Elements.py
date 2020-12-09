@@ -10,11 +10,10 @@ class pageElements(basePage.basePage):
     espain = '**/XCUIElementTypeStaticText[`value == "Español"`]'
     languageList = [english,traditional,espain]
     first_wx_btn = '/var/mobile/Containers/Data/Application/BD7F6F1B-8CE7-4F24-B497-D50A3DC78B75/Library/Bundlejs/bundle/assets/wechat.png'
-
     first_fb_btn = '/var/mobile/Containers/Data/Application/BD7F6F1B-8CE7-4F24-B497-D50A3DC78B75/Library/Bundlejs/bundle/assets/facebook.png'
     first_gg_btn = '/var/mobile/Containers/Data/Application/BD7F6F1B-8CE7-4F24-B497-D50A3DC78B75/Library/Bundlejs/bundle/assets/google.png'
     first_appleid_btn = '/var/mobile/Containers/Data/Application/BD7F6F1B-8CE7-4F24-B497-D50A3DC78B75/Library/Bundlejs/bundle/assets/apple.png'
-
+    cn_select_bt = [first_wx_btn]
 
 
     #弹框按钮元素
@@ -52,21 +51,23 @@ class pageElements(basePage.basePage):
     account_click = '帳戶'
     #点击用户信息
     user_click = '**/XCUIElementTypeStaticText[`value == "用戶信息"`]'
+    #未登錄狀態下我的頁面 用戶信息
+    not_login_my = '**/XCUIElementTypeStaticText[`value == "登錄"`]'
     #退出登录
     logout_element = '**/XCUIElementTypeStaticText[`value == "退出登錄"`]'
     #微信登录按钮
     '''使用accessiD'''
-    wechat_btn_element = '/var/mobile/Containers/Data/Application/CC010926-CB01-42A2-A5E1-C834501BCFA3/Library/Bundlejs/bundle/assets/wechat.png'
+    wechat_btn_element = '/var/mobile/Containers/Data/Application/8E80547B-6F0A-4D00-8F67-EDE6E2E4BB23/Library/Bundlejs/bundle/assets/wechat.png'
     # google登录按钮
     google_btn_element = '/var/mobile/Containers/Data/Application/CC010926-CB01-42A2-A5E1-C834501BCFA3/Library/Bundlejs/bundle/assets/google.png'
-
     # fb登录按钮
     fb_btn_element = '/var/mobile/Containers/Data/Application/CC010926-CB01-42A2-A5E1-C834501BCFA3/Library/Bundlejs/bundle/assets/facebook.png'
     #苹果登录
     apple_btn_element = '/var/mobile/Containers/Data/Application/CC010926-CB01-42A2-A5E1-C834501BCFA3/Library/Bundlejs/bundle/assets/apple.png'
 
     #跳过按钮
-    skip_btn_element = ''
+    '''classChain元素'''
+    skip_btn_element = '**/XCUIElementTypeStaticText[`value == "跳過"`]'
     #确认按钮
     confirm_btn_element = ''
     #结果text
