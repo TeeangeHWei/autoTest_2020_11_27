@@ -1,8 +1,7 @@
 # coding=utf-8
 from time import sleep
-from unittestreport import rerun
 from appiumTest.iOSTest.common import basePage
-from appiumTest.iOSTest.pages.page_Elements import pageElements
+from appiumTest.iOSTest.pages.yamimeal_login_pages.page_Elements import pageElements
 from appium.webdriver.common.touch_action import TouchAction
 class loginPage(basePage.basePage):
 
@@ -32,6 +31,9 @@ class loginPage(basePage.basePage):
     first_appleid_btn = pageElements.first_appleid_btn
     first_fb_btn = pageElements.first_fb_btn
     not_login_mypage = pageElements.not_login_my
+    fb_account_login_element = pageElements.fb_Account_element
+    fb_password_login_element = pageElements.fb_password_element
+    fb_comfirm_login_element = pageElements.fb_comfirmBtn_confirm_element
 
 
     #截图
@@ -133,16 +135,19 @@ class loginPage(basePage.basePage):
         status:0 从未登录过 1 已登录过
         '''
         if status == 0:
-            self.frist_Install_app(1)
-            # self.by_id('').sendKey('')
-            # self.by_id('').sendKey('')
-            # self.by_id('').click()
-            sleep(10)
+            # self.frist_Install_app(1)
+
             # self.first_fb_loginbtn()
 
             TouchAction(self.driver).tap(x=162,y=464).perform().release()
             sleep(10)
             self.by_AccessId(self.fb_aler_continue).click()
+            sleep(5)
+            self.iOS_By_ClassChain(self.fb_account_login_element).send_keys('13590926268')
+            self.iOS_By_ClassChain(self.fb_password_login_element).send_keys('2226511aa')
+            self.iOS_By_ClassChain(self.fb_comfirm_login_element).click()
+
+
             sleep(10)
             self.by_AccessId(self.fb_aler_continue).click()
             sleep(12)
@@ -157,7 +162,8 @@ class loginPage(basePage.basePage):
             sleep(4)
             self.logout()
         else:
-            self.click_fb_loginBtn()
+            # self.click_fb_loginBtn()
+            TouchAction(self.driver).tap(x=160,y=472).perform().release()
             sleep(10)
             self.by_AccessId(self.fb_aler_continue).click()
             sleep(10)
@@ -199,12 +205,12 @@ class loginPage(basePage.basePage):
             sleep(4)
             self.logout()
         else:
-            self.click_google_login_btn()
+            TouchAction(self.driver).tap(x=252, y=464).perform().release()
             sleep(3)
             self.alert_accept()
             sleep(5)
-            self.by_xpath(self.gg_third_login).click()
-            sleep(12)
+            # self.by_xpath(self.gg_third_login).click()
+            # sleep(12)
             self.iOS_By_ClassChain(self.yes_loca_element).click()
             sleep(5)
             self.alert()
@@ -269,7 +275,7 @@ class loginPage(basePage.basePage):
             self.thrid_fb_login(0)
         if tag == 2:
             '''谷歌第三方登录，并退出登录'''
-            self.thrid_gg_login(0)
+            self.thrid_gg_login(1)
         if tag == 3:
             self.click_appele_login_btn()
 

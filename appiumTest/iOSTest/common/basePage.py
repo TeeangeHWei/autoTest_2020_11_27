@@ -1,7 +1,8 @@
 # coding=utf-8
+
+
 class basePage(object):
-    def __init__(self,driver,unitest):
-        self.caseAssert = unitest
+    def __init__(self,driver):
         self.driver = driver
     # 元素id
     def by_id(self,loca):
@@ -64,6 +65,11 @@ class basePage(object):
             print('未找到断言内容{0}'.format(e))
 
 
+    def implicitly_wait(self,time):
+        try:
+            return self.driver.implicitly_wait(time)
+        except Exception as e:
+            print('超时失败')
 
 
 

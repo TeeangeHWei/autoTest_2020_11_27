@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from appiumTest.iOSTest.pages.login_Test import loginPage
+from appiumTest.iOSTest.pages.yamimeal_login_pages.login_Test import loginPage
 import unittest
 import time
 from appium import webdriver
@@ -14,21 +14,22 @@ import os
 class testYamimealLogin(unittest.TestCase):
 
     def setUp(self) -> None:
-        app = os.path.abspath('/Users/cyrus.h/Desktop/AutoTest/autoTest_2020_11_27/appiumTest/iOSTest/config/Yamimeal_2.7.0.ipa')
+        app = os.path.abspath('/appiumTest/iOSTest/config/Yamimeal_2.7.0.ipa')
         desired_caps = {
                           "platformName": "iOS",
-                          "deviceName": "甜在心馒头",
-                          "bundleId":"com.benmu.YamiMeal",
+                          "deviceName": "iPhone",
+                          "bundleId":"com.benmu.mobile.YamiMeal",
                           "AutomationName":"XCUITest",
-                          "udid":"00008020-000E2D540209002E",
-                          "platformVersion": "14.1",
-                          "app":app
+                          "udid":"00008030-0004688822A1802E",
+                          "platformVersion": "14.0",
+                          # "app":app
                         }
         self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
         self.case = self
     def tearDown(self) -> None:
         time.sleep(2)
         self.driver.close_app()
+
     #执行测试用例
     '''
         :param:loginPage 有两个参数
@@ -37,13 +38,14 @@ class testYamimealLogin(unittest.TestCase):
     '''
     def test_wx_Yamimeal_login(self):
         '''微信登录'''
-        yamimealLoginPage = loginPage(self.driver,self.case)
-        yamimealLoginPage.login_approbject(0)
+        # yamimealLoginPage = loginPage(self.driver,self.case)
+        # yamimealLoginPage.login_approbject(0)
 
-    # def test_fb_Yamimeal_login(self):
-    #     '''脸书登录'''
-    #     fbLoginPage = loginPage(self.driver,self.case)
-    #     fbLoginPage.login_approbject(1)
+    def test_fb_Yamimeal_login(self):
+        '''脸书登录'''
+        fbLoginPage = loginPage(self.driver)
+        fbLoginPage.login_approbject(1)
+
 
     # def test_google_yamimeal_login(self):
     #     '''谷歌第三方登录'''

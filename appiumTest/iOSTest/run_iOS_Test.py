@@ -1,7 +1,6 @@
 #coding=utf-8
 import unittest,os
-from appiumTest.iOSTest.common import HwTestReport
-from appiumTest.iOSTest.testCases import login_Test_Case
+from appiumTest.iOSTest.testCases.TestCase_yamimeal_login import login_Test_Case
 from unittestreport import TestRunner
 cur_Path = os.path.dirname(os.path.realpath(__file__))
 case_Path = os.path.join(cur_Path,'testcases')
