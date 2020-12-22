@@ -17,7 +17,6 @@ class loginPage(basePage.basePage):
     fb_aler_continue = pageElements.alert_Countinue_element
     yes_loca_element = pageElements.yes_location_element
     no_loca_element = pageElements.no_location_element
-    logout_account = pageElements.account_click
     logout_userInfo = pageElements.user_click
     logout_btn_click = pageElements.logout_element
     no_try_alert = pageElements.no_Try_element

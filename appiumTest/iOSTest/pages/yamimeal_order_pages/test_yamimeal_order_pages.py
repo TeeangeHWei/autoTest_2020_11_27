@@ -64,6 +64,7 @@ class order_Pages(basePage.basePage):
                 print('-------------通过"订单送货中"------------')
                 break
             except Exception as e:
+
                 print('订单页面送货中text还未改变执行的第：'+str(i)+'次')
 
         for i in range(100):

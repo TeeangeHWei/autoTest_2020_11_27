@@ -23,6 +23,11 @@ class basePage(object):
         except Exception as e:
             print('未找到元素{0}'.format(e))
 
+    def by_name_elements(self,loca):
+        try:
+            return self.driver.find_elements_by_class_name(loca)
+        except Exception as e:
+            print('未找到元素{0}'.format(e))
     # accessibilityId
     def by_AccessId(self, loca):
         try:
@@ -70,6 +75,18 @@ class basePage(object):
             return self.driver.implicitly_wait(time)
         except Exception as e:
             print('超时失败')
+
+    def iOS_By_Predicate(self,loca):
+        try:
+            return self.driver.find_element_by_ios_predicate(loca)
+        except Exception as e:
+            print('未找到元素')
+
+    def By_iOS_class_chain_elements(self,loca):
+        try:
+            return self.driver.find_elements_by_ios_class_chain(loca)
+        except Exception as e:
+            print('未找到元素组{0}'.format(e))
 
 
 
