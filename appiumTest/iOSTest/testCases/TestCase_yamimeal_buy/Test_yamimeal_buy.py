@@ -71,21 +71,21 @@ class Test_Yamimeal_buy():
     # yamimeal服务费
     test_yamimeal_service_tips = 0.0
     # 配送费 有两个数据类型 int，float
-    test_delivery_tips = 0.0
+    test_delivery_tips = 1.0
     # 优惠价扣除
     test_discount_OFF = 0.6
     # 商家服务费
-    test_merch_Service_tips = 0.1
+    test_merch_Service_tips = '0.10'
     # 小费
     test_tips = 0.0
     # 总合计
     test_total = 0.0
     # 包装费
-    test_package_tips = 1.0
+    test_package_tips = '1.00'
     #商品税
     test_goods_tax = 0.0
     # 税
-    test_tax = 0.7
+    test_tax_data = '0.70'
 
     # ----------------------------end---------------------------#
 
@@ -126,7 +126,6 @@ class Test_Yamimeal_buy():
 
 
 
-    @allure.story('关闭虚拟器')
     def teardown_method(self) -> None:
         '''
 
@@ -266,42 +265,39 @@ class Test_Yamimeal_buy():
     #     print('商品小计' + str(self.goods_xiaoji))
     #     assert self.goods_xiaoji==self.test_goods_xiaoji
 
-    @allure.story('测试包装税')
-    def test_goods_packing(self):
-        self.in_buy_page()
-        # 包装费
-        # package_tips_str = str(self.elements_List[15]).replace('$ ', '')
-        # self.package_tips = float(package_tips_str)
-        self.package_tips = float(self.num_list[14])
-        print(self.package_tips)
-        print('包装费' + str(self.package_tips))
-        packing_total = self.math.packing_Tax(self.test_package_tips,self.test_tax)
-        assert self.package_tips == packing_total
+    # @allure.story('测试包装费')
+    # def test_goods_packing(self):
+    #     self.in_buy_page()
+    #     # 包装费
+    #     self.package_tips = self.num_list[14]
+    #     print(self.package_tips)
+    #     print('包装费' + str(self.package_tips))
+    #     assert self.package_tips == self.test_package_tips
 
 
-    @allure.story('测试商家服务费')
-    def test_merch_service_tips(self):
-        self.in_buy_page()
-        # 商家服务费
-        # merch_service_tips_str = str(self.elements_List[34]).replace('$ ', '')
-        self.merch_Service_tips = float(self.num_list[15])
-
-        print(str(self.elements_List[48]) + str(self.merch_Service_tips))
-        assert self.merch_Service_tips == self.test_merch_Service_tips
+    # @allure.story('测试商家服务费')
+    # def test_merch_service_tips(self):
+    #     self.in_buy_page()
+    #     # 商家服务费
+    #     # merch_service_tips_str = str(self.elements_List[34]).replace('$ ', '')
+    #     self.merch_Service_tips = self.num_list[15]
+    #     self.test_merch_Service_Result = self.math.merch_service_tips(self.test_goods_xiaoji,self.test_discount_OFF,self.test_merch_Service_tips)
+    #     print(str(self.elements_List[48]) + str(self.merch_Service_tips))
+    #     assert self.merch_Service_tips == self.test_merch_Service_tips
 
     @allure.story('测试税')
     def test_tax(self):
         #税
         self.in_buy_page()
         # tax_str = str(self.elements_List[18]).replace('$ ', '')
-        self.tax = float(self.num_list[8])
+        self.tax = self.num_list[8]
         # str(elements_List[19]).replace('-$ ', '')
         print(str(self.elements_List[39]) + str(self.tax))
-        delivery_tax = self.math.delivery_Tax(self.test_delivery_tips,self.test_tax)
+        delivery_tax = self.math.delivery_Tax(self.test_delivery_tips,self.test_tax_data)
         print(delivery_tax)
-        packing_tax = self.math.packing_Tax(self.test_package_tips,self.test_tax)
+        packing_tax = self.math.packing_Tax(self.test_package_tips,self.test_tax_data)
         merch_tax = self.math.merch_Goods_Tax(self.test_goods_xiaoji,self.test_discount_OFF,self.test_goods_tax)
-        merch_service_tax = self.math.merch_service_tax(self.test_goods_xiaoji,self.test_discount_OFF,self.test_tax)
+        merch_service_tax = self.math.merch_service_tax(self.test_goods_xiaoji,self.test_discount_OFF,self.test_merch_Service_tips,self.test_tax_data)
         tax_total = self.math.Tax(delivery_tax,packing_tax,merch_tax,merch_service_tax)
         assert self.tax == tax_total
 
@@ -316,19 +312,19 @@ class Test_Yamimeal_buy():
 
 
         # 配送费
-    @allure.story('测试配送费')
-    def test_delivery(self):
-        delivery_str = str(self.elements_List[33]).replace('$ ', '')
-        self.delivery_tips = float(delivery_str)
-        print(str(self.elements_List[35]) + str(self.delivery_tips))
-        # assert self.delivery_tips == self.test_delivery_tips
-        #
-    @allure.story('测试总计消费')
-    def test_total_num(self):
-        # # 合计总消费
-        # total_str = str(self.elements_List[8]).replace('$ ', '')
-        self.total = float(self.num_list[3])
-        print(str(self.elements_List[16]) + str(self.total))
+    # @allure.story('测试配送费')
+    # def test_delivery(self):
+    #     delivery_str = str(self.elements_List[33]).replace('$ ', '')
+    #     self.delivery_tips = float(delivery_str)
+    #     print(str(self.elements_List[35]) + str(self.delivery_tips))
+    #     assert self.delivery_tips == self.test_delivery_tips
+    #     #
+    # @allure.story('测试总计消费')
+    # def test_total_num(self):
+    #     # # 合计总消费
+    #     # total_str = str(self.elements_List[8]).replace('$ ', '')
+    #     self.total = float(self.num_list[3])
+    #     print(str(self.elements_List[16]) + str(self.total))
 
     def in_buy_page(self):
         self.Common_Tools()

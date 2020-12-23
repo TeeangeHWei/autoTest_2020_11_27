@@ -6,6 +6,7 @@
 # @Function : 计算公式
 import os
 import shutil
+from decimal import Decimal
 
 
 class math_mula():
@@ -38,7 +39,7 @@ TAx
 
     '''
     #商家服务费
-    def merch_service_tips(self,goodsnum,discount,merchtips)->float:
+    def merch_service_tips(self,goodsnum,discount,merchtips)->str:
         '''
 
         :param goodsNum: 商品小计
@@ -46,11 +47,12 @@ TAx
         :param merchTips: 商家服务费
         :return:
         '''
-        total_result = (goodsnum - (goodsnum*discount)) *merchtips
+        total_result_Decimal = (Decimal(goodsnum) - Decimal(goodsnum*discount)) *Decimal(merchtips)
+        total_result = str(total_result_Decimal.quantize(Decimal('0.00')))
 
         return total_result
     #商家服务费税
-    def merch_service_tax(self,goodsnum,discount,merchtips,tax) -> float:
+    def merch_service_tax(self,goodsnum,discount,merchtips,tax) -> str:
         '''
 
         :param goodsNum: 商品小计
@@ -59,11 +61,12 @@ TAx
         :param tax: 税费
         :return:
         '''
-        merch_tax = (goodsnum-(goodsnum*discount))*merchtips*tax
+        merch_tax_Decimal = (Decimal(goodsnum)-Decimal((goodsnum*discount)))*Decimal(merchtips)*Decimal(tax)
+        merch_tax = str(merch_tax_Decimal.quantize(Decimal('0.00')))
         return merch_tax
 
     #商品税
-    def merch_Goods_Tax(self, goodsnum, discount, goodstax) -> float:
+    def merch_Goods_Tax(self, goodsnum, discount, goodstax) -> str:
         '''
 
         :param goodsNum: 商品小计
@@ -72,32 +75,35 @@ TAx
         :return:
         '''
 
-        merch_Tax = goodsnum - (goodsnum*discount) *goodstax
+        merchTax = Decimal(goodsnum) - (Decimal(goodsnum*discount)) * Decimal(goodstax)
+        merch_Tax = str(merchTax.quantize(Decimal('0.00')))
         return merch_Tax
 
     #包装税
-    def packing_Tax(self,packtips,packtax) -> float:
+    def packing_Tax(self,packtips,packtax) -> str:
         '''
 
         :param packTips: 包装费
         :param packTax: 包装税
         :return:
         '''
-        packingTax = packtips * packtax
-        return packingTax
+        packingTax = Decimal(packtips) * Decimal(packtax)
+        str1 = str(packingTax.quantize(Decimal('0.00')))
+        return str1
 
     #配送税
-    def delivery_Tax(self,deliverytips,deliverytax) -> float:
+    def delivery_Tax(self,deliverytips,deliverytax) -> str:
         '''
 
         :param deliveryTips: 配送费
         :param deliveryTax: 配送税
         :return:
         '''
-        delivery_tax_total = deliverytips * deliverytax
+        deliveryTax = Decimal(deliverytips) * Decimal(deliverytax)
+        delivery_tax_total = str(deliveryTax.quantize(Decimal('0.00')))
         return delivery_tax_total
 
-    def Tax(self,deliverytax,packtax,goodstax,merchtax) -> float:
+    def Tax(self,deliverytax,packtax,goodstax,merchtax) -> str:
 
         tax_total = deliverytax + packtax + goodstax + merchtax
         return tax_total
